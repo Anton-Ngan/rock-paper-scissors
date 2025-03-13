@@ -1,11 +1,8 @@
 const PLAYER_CHOICES = 3;
 const MAX_ROUNDS = 5;
 
-const CHOICE_MAPPING = {
-    0: "paper",
-    1: "rock",
-    2: "scissor"
-}
+// Ordering matters here
+const CHOICES = ["paper", "rock", "scissor"]
 
 let humanScore = 0;
 let computerScore = 0;
@@ -14,18 +11,18 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
+function getIdxByValue(arr, value) {
+    return arr.findIndex( (elem) => elem == value );
+}
+
 function getComputerChoice() {
     num = getRandomInt(PLAYER_CHOICES);
-    return CHOICE_MAPPING[num];
+    return CHOICES[num];
 }
 
 function getHumanChoice() {
     return prompt("Make a choice");
 }
-
-function getKeyByValue(object, value) {
-    return Object.keys(object).find(key => object[key] === value);
-  }
 
 function humanWon(humanChoice, computerChoice) {
     humanScore++;
@@ -43,8 +40,8 @@ function tie() {
 
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
-    let humanNum = getKeyByValue(CHOICE_MAPPING, humanChoice);
-    let computerNum = getKeyByValue(CHOICE_MAPPING, computerChoice);
+    let humanNum = getIdxByValue(CHOICES, humanChoice);
+    let computerNum = getIdxByValue(CHOICES, computerChoice);
 
     if (humanNum == computerNum) {
         tie();
