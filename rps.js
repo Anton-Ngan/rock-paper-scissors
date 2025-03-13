@@ -1,4 +1,5 @@
 const PLAYER_CHOICES = 3;
+const MAX_ROUNDS = 5;
 
 const CHOICE_MAPPING = {
     0: "paper",
@@ -54,10 +55,18 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    for (let round = 0; round < MAX_ROUNDS; round++) {
+        console.log(`Round ${round+1}`)
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        console.log(`You chose ${humanSelection}. Computer chose ${computerSelection}.`)
 
-playRound(humanSelection, computerSelection);
+        playRound(humanSelection, computerSelection);
+        console.log(`Your Score: ${humanScore} | Computer Score: ${computerScore}`)
+    }
+}
 
+playGame()
 // console.log(getComputerChoice())
 // console.log(getHumanChoice())
