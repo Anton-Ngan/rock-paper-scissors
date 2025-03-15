@@ -5,9 +5,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" src="styles.css">
         <title>Rock Paper Scissors</title>
+        <script src="rps.js" defer></script>
     </head>
-    
+
     <body>
-        <script src="rps.js"></script>
+
+        <div class="choices">
+            <button class="rock">Rock</button>
+            <button class="paper">Paper</button>
+            <button class="scissor">Scissors</button>
+        </div>
+
+        <button class="reset">Reset</button>
+
+        <div>
+            Round: 
+            <span class="round">1</span>
+        </div>
+
+        <div>
+            You chose: <span class="player-choice"></span>
+        </div>
+        <div>
+            Computer chose: <span class="computer-choice"></span>
+        </div>
+
+        <div class="round-result"></div>
+
+        <div class="scoreboard">
+            <div>
+                Player Score: 
+                <span class="player-score"></span>
+            </div>
+            <div>
+                Enemy Score:
+                <span class="computer-score"></span>
+            </div>
+            <div>
+                Draw:
+                <span class="draw-score"></span>
+            </div>
+        </div>
     </body>
 </html>

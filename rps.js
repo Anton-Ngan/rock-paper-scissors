@@ -6,6 +6,16 @@ const CHOICES = ["paper", "rock", "scissor"]
 
 let humanScore = 0;
 let computerScore = 0;
+let drawScore = 0;
+let round = 1;
+
+const roundDisplay = document.querySelector("span.round");
+const playerScoreDisplay = document.querySelector(".player-score");
+const computerScoreDisplay = document.querySelector(".computer-score");
+const drawScoreDisplay = document.querySelector(".draw-score");
+const playerChoiceDisplay = document.querySelector(".player-choice");
+const computerChoiceDisplay = document.querySelector(".computer-choice");
+const resultDisplay = document.querySelector(".round-result");
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -24,46 +34,73 @@ function getHumanChoice() {
     return prompt("Make a choice");
 }
 
-function humanWon(humanChoice, computerChoice) {
-    humanScore++;
-    console.log(`You win! ${humanChoice} beats ${computerChoice}.`)
-}
-
-function computerWon(humanChoice, computerChoice) {
-    computerScore++;
-    console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
-}
-
-function tie() {
-    console.log("Draw")
-}
-
 function playRound(humanChoice, computerChoice) {
+
     humanChoice = humanChoice.toLowerCase();
     let humanNum = getIdxByValue(CHOICES, humanChoice);
     let computerNum = getIdxByValue(CHOICES, computerChoice);
 
     if (humanNum == computerNum) {
-        tie();
+        resultDisplay.textContent = "Draw!";
+        drawScore++;
+        drawScoreDisplay.textContent = drawScore;
     } else if ((humanNum + 1) % PLAYER_CHOICES == computerNum) {
-        humanWon(humanChoice, computerChoice);
+        humanScore++;
+        resultDisplay.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
     } else {
-        computerWon(humanChoice, computerChoice);
+        computerScore++;
+        resultDisplay.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
     }
 }
 
-function playGame() {
-    for (let round = 0; round < MAX_ROUNDS; round++) {
-        console.log(`Round ${round+1}`)
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        console.log(`You chose ${humanSelection}. Computer chose ${computerSelection}.`)
+function playGame(humanSelection) {
 
-        playRound(humanSelection, computerSelection);
-        console.log(`Your Score: ${humanScore} | Computer Score: ${computerScore}`)
-    }
+    roundDisplay.textContent = round;
+    round++;
+
+    // for (let round = 0; round < MAX_ROUNDS; round++) {
+    // console.log(`Round ${round+1}`)
+    const computerSelection = getComputerChoice();
+    playerChoiceDisplay.textContent = humanSelection;
+    computerChoiceDisplay.textContent = computerSelection;
+
+    // console.log(`You chose ${humanSelection}. Computer chose ${computerSelection}.`)
+
+    playRound(humanSelection, computerSelection);
+    playerScoreDisplay.textContent = humanScore;
+    computerScoreDisplay.textContent = computerScore;
+    // console.log(`Your Score: ${humanScore} | Computer Score: ${computerScore}`)
+    // }
 }
 
-playGame()
+function main() {
+
+    const buttons = document.querySelectorAll(".rock, .paper, .scissor");
+    buttons.forEach( 
+        (button) => button.addEventListener("click",
+            () => {
+                const humanSelection = button.className;
+                playGame(humanSelection);
+            }
+        )
+    );
+
+    const resetButton = document.querySelector(".reset");
+    resetButton.addEventListener("click", () => 
+        {
+            resultDisplay.textContent = "";
+            roundDisplay.textContent = 1;
+            playerChoiceDisplay.textContent = "";
+            computerChoiceDisplay.textContent = "";
+            playerScoreDisplay.textContent = 0;
+            computerScoreDisplay.textContent = 0;
+            drawScoreDisplay.textContent = 0;
+        }
+    );
+}
+
+
+main()
+// playGame()
 // console.log(getComputerChoice())
 // console.log(getHumanChoice())
