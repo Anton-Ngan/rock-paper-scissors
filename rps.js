@@ -1,14 +1,17 @@
 const PLAYER_CHOICES = 3;
-const MAX_ROUNDS = 5;
+const START_CAPTURED_NODES = 4;
+const CAPTURED_NODES_TO_WIN = 8;
 
-// Ordering matters here
-const CHOICES = ["paper", "rock", "scissor"]
+// Ordering matters in this array
+const CHOICES = ["defense", "vanguard", "ranged"]
 
 let humanScore = 0;
 let computerScore = 0;
 let drawScore = 0;
 let round = 1;
+let nodesCaptured = START_CAPTURED_NODES;
 
+const buttons = document.querySelectorAll(".vanguard, .defense, .ranged");
 const roundDisplay = document.querySelector("span.round");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
@@ -30,10 +33,6 @@ function getComputerChoice() {
     return CHOICES[num];
 }
 
-function getHumanChoice() {
-    return prompt("Make a choice");
-}
-
 function playRound(humanChoice, computerChoice) {
 
     humanChoice = humanChoice.toLowerCase();
@@ -41,15 +40,31 @@ function playRound(humanChoice, computerChoice) {
     let computerNum = getIdxByValue(CHOICES, computerChoice);
 
     if (humanNum == computerNum) {
-        resultDisplay.textContent = "Draw!";
+        resultDisplay.textContent = "Draw!";                                                   // Draw
         drawScore++;
         drawScoreDisplay.textContent = drawScore;
-    } else if ((humanNum + 1) % PLAYER_CHOICES == computerNum) {
+    } else if ((humanNum + 1) % PLAYER_CHOICES == computerNum) {                               // Player Wins
         humanScore++;
+        nodesCaptured++;
+        const nodeElem = document.querySelector(`#n${nodesCaptured}`)
+        nodeElem.setAttribute("style", "background-color: green")
         resultDisplay.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
-    } else {
+    } else {                                                                                   // Computer Wins
         computerScore++;
+        const nodeElem = document.querySelector(`#n${nodesCaptured--}`)
+        nodeElem.setAttribute("style", "background-color: red")
         resultDisplay.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
+    }
+
+    if (nodesCaptured == CAPTURED_NODES_TO_WIN || nodesCaptured == 0) {
+        buttons.forEach( button => {button.disabled = true;})
+
+        if (nodesCaptured == CAPTURED_NODES_TO_WIN) {
+            resultDisplay.textContent = "You have captured the enemy's castle!";
+        } else {
+            resultDisplay.textContent = "The enemy has captured your castle!";
+        }
+
     }
 }
 
@@ -58,24 +73,17 @@ function playGame(humanSelection) {
     roundDisplay.textContent = round;
     round++;
 
-    // for (let round = 0; round < MAX_ROUNDS; round++) {
-    // console.log(`Round ${round+1}`)
     const computerSelection = getComputerChoice();
     playerChoiceDisplay.textContent = humanSelection;
     computerChoiceDisplay.textContent = computerSelection;
 
-    // console.log(`You chose ${humanSelection}. Computer chose ${computerSelection}.`)
-
     playRound(humanSelection, computerSelection);
     playerScoreDisplay.textContent = humanScore;
     computerScoreDisplay.textContent = computerScore;
-    // console.log(`Your Score: ${humanScore} | Computer Score: ${computerScore}`)
-    // }
 }
 
 function main() {
 
-    const buttons = document.querySelectorAll(".rock, .paper, .scissor");
     buttons.forEach( 
         (button) => button.addEventListener("click",
             () => {
@@ -88,6 +96,20 @@ function main() {
     const resetButton = document.querySelector(".reset");
     resetButton.addEventListener("click", () => 
         {
+            buttons.forEach( button => {button.disabled = false;})
+            nodesCaptured = START_CAPTURED_NODES;
+
+            const playerDefaultNodes = document.querySelectorAll(".player-node")
+            playerDefaultNodes.forEach( (node) => {node.setAttribute("style", "background-color: green");} )
+
+            const computerDefaultNodes = document.querySelectorAll(".computer-node")
+            computerDefaultNodes.forEach( (node) => {node.setAttribute("style", "background-color: red");} )
+
+            humanScore = 0;
+            computerScore = 0;
+            drawScore = 0;
+            round = 1;
+
             resultDisplay.textContent = "";
             roundDisplay.textContent = 1;
             playerChoiceDisplay.textContent = "";
@@ -99,8 +121,4 @@ function main() {
     );
 }
 
-
 main()
-// playGame()
-// console.log(getComputerChoice())
-// console.log(getHumanChoice())

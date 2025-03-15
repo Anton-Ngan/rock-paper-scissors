@@ -3,25 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" src="styles.css">
-        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="styles.css">
+        <title>Vanguard Defense Ranged</title>
         <script src="rps.js" defer></script>
     </head>
 
     <body>
-
-        <div class="choices">
-            <button class="rock">Rock</button>
-            <button class="paper">Paper</button>
-            <button class="scissor">Scissors</button>
-        </div>
-
-        <button class="reset">Reset</button>
+        <div class="title">Vanguard Defense Ranged</div>
 
         <div>
             Round: 
             <span class="round">1</span>
         </div>
+
+        <button class="reset">Reset</button>
+
+        <div class="display">
+            <div class="player-choice"></div>
+            <div class="computer-choice"></div>
+        </div>
+
+        <div class="nodes">
+            <img src="./img/castle.png" class="player-node">
+            <div id="n1" class="player-node"></div>
+            <div id="n2" class="player-node"></div>
+            <div id="n3" class="player-node"></div>
+            <div id="n4" class="player-node"></div>
+            <div id="n5" class="computer-node"></div>
+            <div id="n6" class="computer-node"></div>
+            <div id="n7" class="computer-node"></div>
+            <div id="n8" class="computer-node"></div>
+            <img src="./img/castle.png" class="computer-node">
+        </div>
+
+        <div class="choices">
+            <button class="vanguard">Vanguard</button>
+            <button class="defense">Defense</button>
+            <button class="ranged">Ranged</button>
+        </div>
+
 
         <div>
             You chose: <span class="player-choice"></span>
@@ -46,5 +66,6 @@
                 <span class="draw-score"></span>
             </div>
         </div>
+
     </body>
 </html>

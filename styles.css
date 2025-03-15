@@ -1,0 +1,17 @@
+
+
+.nodes > * {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+}
+
+.player-node {
+    background-color: green;
+}
+
+
+.computer-node {
+    background-color: red;
+}
