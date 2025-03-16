@@ -7,4 +7,4 @@ along with some sort of tug of war element using castles to represent the end ga
 * Sword icon made by <a href="https://www.flaticon.com/free-icons/sword" title="sword icons">smashingstocks</a> from Flaticon
 * Mage staff icon made by <a href="https://www.flaticon.com/free-icon/weapon_18949857" title="sword icons">Yogs144</a> from Flaticon
 * Shield icon made by <a href="https://www.flaticon.com/free-icons/shield" title="shield icons">Freepik</a> from Flaticon
-*Castle icon made by <a href="https://www.flaticon.com/free-icons/castle" title="castle icons">DinosoftLabs</a> from Flaticon
+* Castle icon made by <a href="https://www.flaticon.com/free-icons/castle" title="castle icons">DinosoftLabs</a> from Flaticon
