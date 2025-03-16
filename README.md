@@ -1,5 +1,5 @@
 # Rock Paper Scissors (Medieval Themed)
-This project was part of the The Odin Project <a href="https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors>"Revisiting Rock Paper Scissors"</a>. 
+This project was part of the The Odin Project <a href="https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors">Revisiting Rock Paper Scissors</a>. 
 I had to refactor the code quite a bit to include UI as the game was originally built just in the browser console. I had a bit of creativity and changed this to be medieval themed
 along with some sort of tug of war element using castles to represent the end game.
 
