@@ -3,69 +3,98 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+        <link rel="icon" href="./img/castle.png">
         <link rel="stylesheet" href="styles.css">
-        <title>Vanguard Defense Ranged</title>
+        <title>Capture the Castle</title>
         <script src="rps.js" defer></script>
     </head>
 
     <body>
-        <div class="title">Vanguard Defense Ranged</div>
+        <div class="title">Capture the Castle</div>
 
-        <div>
-            Round: 
-            <span class="round">1</span>
+        <div class="header">
+            <div class="round-display">
+                Round: 
+                <span class="round">1</span>
+            </div>
+    
+            <div class="reset">
+                <button class="reset-button">Reset</button>
+            </div>
         </div>
 
-        <button class="reset">Reset</button>
+        <div class="choice-display">
+            <div class="player">
+                <div class="text">You</div>
+                <div class="human-choice choice"><img></div>
+            </div>
 
-        <div class="display">
-            <div class="player-choice"></div>
-            <div class="computer-choice"></div>
+            <div>
+                <img class="rules-image" src="./img/rules.png" alt="The rules of the game. Image depicts Vanguard winning over Ranged which wins over Defense which wins over Vanguard.">
+            </div>
+
+            <div class="player">
+                <div class="text">Computer</div>
+                <div class="computer-choice choice"><img></div>
+            </div>
         </div>
+
+        <div class="battleMsg">...</div>
 
         <div class="nodes">
-            <img src="./img/castle.png" class="player-node">
-            <div id="n1" class="player-node"></div>
-            <div id="n2" class="player-node"></div>
-            <div id="n3" class="player-node"></div>
-            <div id="n4" class="player-node"></div>
-            <div id="n5" class="computer-node"></div>
-            <div id="n6" class="computer-node"></div>
-            <div id="n7" class="computer-node"></div>
-            <div id="n8" class="computer-node"></div>
-            <img src="./img/castle.png" class="computer-node">
-        </div>
-
-        <div class="choices">
-            <button class="vanguard">Vanguard</button>
-            <button class="defense">Defense</button>
-            <button class="ranged">Ranged</button>
-        </div>
-
-
-        <div>
-            You chose: <span class="player-choice"></span>
-        </div>
-        <div>
-            Computer chose: <span class="computer-choice"></span>
-        </div>
-
-        <div class="round-result"></div>
-
-        <div class="scoreboard">
-            <div>
-                Player Score: 
-                <span class="player-score"></span>
+            <div class="base">
+                <div>Your Castle</div>
+                <div id="n1" class="player-node node home"><img src="./img/castle.png" alt="A black castle icon." width="60px"></div>
             </div>
-            <div>
-                Enemy Score:
-                <span class="computer-score"></span>
-            </div>
-            <div>
-                Draw:
-                <span class="draw-score"></span>
+            <div id="n2" class="player-node node"></div>
+            <div id="n3" class="player-node node"></div>
+            <div id="n4" class="player-node node"></div>
+            <div id="n5" class="player-node node"></div>
+            <div id="n6" class="computer-node node"></div>
+            <div id="n7" class="computer-node node"></div>
+            <div id="n8" class="computer-node node"></div>
+            <div id="n9" class="computer-node node"></div>
+            <div class="base">
+                <div>Enemy Castle</div>
+                <div id="n10" class="computer-node node home"><img src="./img/castle.png" alt="A black castle icon." width="60px"></div>
             </div>
         </div>
+
+        <div class="human-decision">
+            <div class="info-text">Choose Your Class</div>
+            <div class="images">
+                <div class="selection">
+                    <img class="vanguard image" src="./img/vanguard.png" alt="A black sword icon.">
+                    <div>Vanguard</div>
+                </div>
+                <div class="selection">
+                    <img class="ranged image" src="./img/ranged.png" alt="A black mage staff icon.">
+                    <div>Ranged</div>
+                </div>
+                <div class="selection">
+                    <img class="defense image" src="./img/defense.png" alt="A black shield icon.">
+                    <div>Defense</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+                <div class="message"></div>
+                <div class="stats">
+                    <div>Wins: <span class="wins"></span></div>
+                    <div>Losses: <span class="losses"></span></div>
+                    <div>Draws: <span class="draws"></span></div>
+                </div>
+                <div class="play-again"><button class="play-again-button">Play Again</button></div>
+            </div>
+        </div>
+
+        <div id="overlay"></div>
 
     </body>
 </html>
